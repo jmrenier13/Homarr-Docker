@@ -6,9 +6,16 @@
 version: 2
 updates:
 
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: github-actions
+    directory: /
     schedule:
-      interval: "daily"
+      interval: daily
     commit-message:
-      prefix: "MAINT"
+      prefix: MAINT
+
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: daily
+    commit-message:
+      prefix: MAINT
