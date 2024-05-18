@@ -16,7 +16,6 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    container: ubuntu
     strategy:
       fail-fast: false
 
@@ -29,7 +28,9 @@ jobs:
         echo "DIR=." >> $GITHUB_ENV
 
     - name: Start docker containers
-      run: docker compose up --wait --wait-timeout 120 --detach
+      run: |
+        docker run -it ubuntu
+        docker compose up --wait --wait-timeout 120 --detach
 
     - name: Show containers
       run: docker container ps
