@@ -27,7 +27,10 @@ jobs:
     - name: Install curl
       run: |
         sudo apt-get update
-        sudo apt-get install curl
+        sudo apt-get install curl -y
+
+    - name: Test curl
+      run: curl www.google.com > curl_google_results
 
     - name: Install docker
       run: curl -fsSL https://get.docker.com/ | sh
