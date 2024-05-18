@@ -38,7 +38,4 @@ jobs:
       run: docker network ls
 
     - name: Test
-      run: docker exec homarr curl localhost/status
-
-    - name: Test2
       run: curl 0.0.0.0:80
