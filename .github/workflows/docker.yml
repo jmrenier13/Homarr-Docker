@@ -38,4 +38,7 @@ jobs:
       run: docker network ls
 
     - name: Test
-      run: curl 0.0.0.0:7575
+      run: |
+        curl 0.0.0.0:7575 > curl_homarr_result
+        cat curl_homarr_result
+        
