@@ -16,6 +16,7 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
+    container: ubuntu
     strategy:
       fail-fast: false
 
@@ -23,13 +24,21 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
+    - name: Install curl
+      run: |
+        sudo apt-get update
+        sudo apt-get install curl
+
+    - name: Install docker
+      run: curl -fsSL https://get.docker.com/ | sh
+
     - name: Set env
       run: |
+        echo "$USER"
         echo "DIR=." >> $GITHUB_ENV
 
     - name: Start docker containers
       run: |
-        docker run -it ubuntu
         docker compose up --wait --wait-timeout 120 --detach
 
     - name: Show containers
