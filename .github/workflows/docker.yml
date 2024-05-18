@@ -33,3 +33,6 @@ jobs:
 
     - name: Show containers
       run: docker container ps
+
+    - name: Networks
+      run: docker network ls
