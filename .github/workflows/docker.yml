@@ -26,7 +26,6 @@ jobs:
 
     - name: Install sudo
       run: |
-        echo "$USER"
         apt-get update
         apt-get -y install sudo
 
@@ -51,3 +50,13 @@ jobs:
 
     - name: Show containers
       run: docker container ps
+
+    - name: Curl localhost
+      run: |
+        curl 127.0.0.1 > curl_localhost_results
+        cat curl_localhost_results
+
+    - name: Is up
+      run: |
+        curl -sf 127.0.0.1:7575 > /dev/null
+        if [ ! $? = 6 ]; then echo "Site is up"; else echo "Site is down"; exit 1; fi
