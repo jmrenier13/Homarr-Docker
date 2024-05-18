@@ -38,4 +38,4 @@ jobs:
       run: docker network ls
 
     - name: Test
-      run: curl 0.0.0.0:80
+      run: curl 0.0.0.0:7575
