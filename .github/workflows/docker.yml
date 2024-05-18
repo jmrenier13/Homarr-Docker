@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -27,7 +28,17 @@ jobs:
         echo "DIR=." >> $GITHUB_ENV
 
     - name: Start docker containers
-      run: docker compose up --wait --wait-timeout 120 --detach
+      run: |
+        docker compose up --wait --wait-timeout 120 --detach
 
     - name: Show containers
       run: docker container ps
+
+    - name: Networks
+      run: docker network ls
+
+    - name: Test
+      run: |
+        curl 0.0.0.0:7575 > curl_homarr_result
+        cat curl_homarr_result
+        
